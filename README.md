@@ -1,5 +1,7 @@
 # nn-contrib
 
+There's a couple of files in this repo that were copied from other's postings - webworker01 and goldenman come to mind.
+
 Clone this repo to ~/contrib
 
 
