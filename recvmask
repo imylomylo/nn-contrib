@@ -1,0 +1,18 @@
+#!/bin/bash
+# Usage: ./recvmask RECVMASK [set|not]
+# eg: 
+#####$ ./recvmask 270c00e10f110001 set
+###### equivalent:  curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\"270c00e10f110001\"}"|jq '.set'
+# [
+#   "dev1_jl777",
+#   "chainstrike_SH",
+#   "titomane_SH"
+# ]
+if [ "$2" == "set" ]
+then 
+  echo set
+  curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\"${1}\"}"|jq '.set[]' #[] turns it into a list
+else
+  echo not
+  curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\"${1}\"}"|jq '.not[]'
+fi

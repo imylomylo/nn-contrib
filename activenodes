@@ -1,0 +1,16 @@
+#!/bin/bash
+# for the specified recv.mask ($1 param) ex: ./activenodes 3f5e7f651f37e419
+# displaying set of active notaries
+curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\""${1}"\"}"
+# displaying numbers of active notaries per region (+devs)
+echo -n "AR: "; echo "$(curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\""${1}"\"}")" | awk '{print gsub(/_AR/, "")}'
+echo -n "EU: "; echo "$(curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\""${1}"\"}")" | awk '{print gsub(/_EU/, "")}'
+echo -n "NA: "; echo "$(curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\""${1}"\"}")" | awk '{print gsub(/_NA/, "")}'
+echo -n "SH: "; echo "$(curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\""${1}"\"}")" | awk '{print gsub(/_SH/, "")}'
+echo -n "dev: "; echo "$(curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\""${1}"\"}")" | awk '{print gsub(/dev/, "")}'
+# displaying number of active notaries corresponding to "metaphil" search criteria (replace metaphil between // by your own search pattern)
+echo -n "meta: "; echo "$(curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\""${1}"\"}")" | awk '{print gsub(/metaphil/, "")}'
+# displaying number of active notaries corresponding to $2 param search criteria (ex ./activenodes 3f5e7f651f37e419 tito)
+if [ "$#" -eq 2 ]; then
+    echo -n "$2: ";echo "$(curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\""${1}"\"}")" | awk -v awk_var=$2 'BEGIN { search = awk_var } {print gsub(search, "")}'
+fi

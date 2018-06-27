@@ -1,0 +1,3 @@
+#!/bin/bash
+pubkey=033ace50aedf8df70035b962a805431363a61cc4e69d99d90726a2d48fb195f68c
+curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"iguana\",\"method\":\"dpow\",\"symbol\":\"KMD\",\"pubkey\":\"$pubkey\"}"

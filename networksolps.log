@@ -1,0 +1,7 @@
+/home/pioneermylo/contrib/logs/networksolps.log {
+    su pioneermylo pioneermylo
+    rotate 30
+    missingok
+    notifempty
+    copytruncate
+}

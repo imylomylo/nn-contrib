@@ -1,0 +1,6 @@
+#!/bin/bash
+NETWORKSOLPS=$(/usr/local/bin/komodo-cli -conf=/home/pioneermylo/.komodo/komodo.conf  getmininginfo | jq '.networksolps')
+echo ${NETWORKSOLPS} > /home/pioneermylo/contrib/logs/networksolps.log
+#sudo logrotate -f /home/pioneermylo/contrib/networksolps.log
+/home/pioneermylo/contrib/sollogstats.sh
+

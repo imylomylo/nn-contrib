@@ -1,0 +1,4 @@
+#!/bin/bash
+GPUMINED=$(komodo-cli minerids 0 |jq -s '.[]' | grep -a1 "external\ miners"|grep blocks | awk '{print $2}')
+#echo "${GPUMINED} / 2000"
+echo "scale=2 ; ${GPUMINED} / 2000" | bc

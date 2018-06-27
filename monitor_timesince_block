@@ -1,0 +1,13 @@
+#!/bin/bash
+CURRENTTIME=$(date +%s)
+LONGESTCHAIN=$(komodo-cli getinfo | jq '.longestchain')
+HASH=$(komodo-cli getblockhash ${LONGESTCHAIN})
+BLOCKTIME=$(komodo-cli getblockheader ${HASH} | jq '.time')
+TIMESINCE=$(expr ${CURRENTTIME} - ${BLOCKTIME})
+if [ ${TIMESINCE} -gt 100 ]
+then
+	echo "more than 100s - do something"
+else
+	echo "less than 100s - OK"
+fi
+echo ${TIMESINCE}

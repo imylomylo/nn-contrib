@@ -1,0 +1,6 @@
+#!/bin/bash
+#curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\"\"}" | jq --compact-output -r '.[].recvmask' | sort | uniq -c | sort
+RESULT=$(curl -s --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\"\"}")
+echo ${RESULT} | jq --compact-output -r '.[].recvmask' | sort | uniq -c | sort
+
+

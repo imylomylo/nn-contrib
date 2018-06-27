@@ -1,0 +1,7 @@
+#!/bin/bash
+if [[ ! -z $1 ]]
+then
+    curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\",\"maskhex\":\"$1\"}"
+else
+    curl --url "http://127.0.0.1:7776" --data "{\"agent\":\"dpow\",\"method\":\"active\"}"
+fi
